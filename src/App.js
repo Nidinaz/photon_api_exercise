@@ -11,13 +11,15 @@ const App = () => {
 
   const mappedButtons = cityList.map((citylisted) => {
     return (
+      <div>
       <button
         onClick={() => {
-          return setCity(<CityApi key={1} city={"amsterdam"}>{citylisted}</CityApi>);
+          return setCity(<CityApi key={1} city={citylisted}></CityApi>);
         }}
       >
-        city1
+        {citylisted}
       </button>
+          </div>
     );
   });
   console.log(mappedButtons);
