@@ -35,10 +35,14 @@ const CityApi = (props) => {
     .then((response) => {
       // const photonAPI = features.map(())
       console.log(response)
-    });
-    setSelectedCity()
+      setSelectedCity()
+    })
+    .catch((e) => {
+      console.log("Error: " + e);
+   
+    })
+
   }
- 
 
 };
 
