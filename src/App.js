@@ -6,7 +6,7 @@ const App = () => {
 
   const cityList = ["Amsterdam", "Berlin", "Madrid", "London", "Brussel"];
 
-  const [city, setCity] = useState("Amsterdam");
+  const [city, setCity] = useState();
 
 
   const mappedButtons = cityList.map((citylisted) => {
@@ -14,7 +14,7 @@ const App = () => {
       <div>
       <button
         onClick={() => {
-          return setCity(<CityApi key={1} city={citylisted}></CityApi>);
+          return setCity(<CityApi key={citylisted} city={citylisted}></CityApi>);
         }}
       >
         {citylisted}
@@ -23,26 +23,45 @@ const App = () => {
     );
   });
   console.log(mappedButtons);
-  return <div>{mappedButtons}</div>
+  return (
+  <div>
+  <div>{mappedButtons}</div>
+  <div>{city}</div>
+  </div>)
 };
 
 const CityApi = (props) => {
+
   const [selectedCity, setSelectedCity] = useState();
 
   if (!selectedCity) {
     axios
-    .get("photon.komoot.io/api/?q=" + props.city)
+    .get("https://photon.komoot.io/api/?q=" + props.city)
     .then((response) => {
-      // const photonAPI = features.map(())
+      const { data } = response
+
+      const photonAPI = data.features.map((feature) => {
+        return (
+          <div>
+            <div>{feature.properties.country}</div>
+          </div>
+        )
+      })
       console.log(response)
-      setSelectedCity()
+      setSelectedCity(
+        <div>
+          <div>{photonAPI}</div>
+        </div>
+      )
     })
     .catch((e) => {
       console.log("Error: " + e);
    
     })
 
-  }
+  } 
+  
+  return <div>{selectedCity}</div>
 
 };
 
