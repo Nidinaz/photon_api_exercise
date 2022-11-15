@@ -3,6 +3,13 @@ import { useState } from "react";
 import axios from "axios";
 
 const App = () => {
+
+  const [user, setUser] = useState({
+    
+
+  })
+
+
   const cityList = ["Amsterdam", "Berlin", "Madrid", "London", "Brussel"];
 
   const [city, setCity] = useState();
