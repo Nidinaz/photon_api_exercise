@@ -5,10 +5,14 @@ import axios from "axios";
 const App = () => {
 
   const [user, setUser] = useState({
-    
-
+    text: '',
   })
 
+  const onTextChange = (field) => {
+    setUser({
+      text: field.target.value,
+    })
+  }
 
   const cityList = ["Amsterdam", "Berlin", "Madrid", "London", "Brussel"];
 
@@ -29,11 +33,17 @@ const App = () => {
       </div>
     );
   });
+
   console.log(mappedButtons);
   return (
     <div>
       <div>{mappedButtons}</div>
       <div>{city}</div>
+      <div className = 'search-form'>
+        <div>
+          <input type ='text' id='text' name="text" placeholder='capitol' value={user.text} onChange={onTextChange}></input>
+        </div>
+      </div>
     </div>
   );
 };
